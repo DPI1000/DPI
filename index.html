@@ -1,4 +1,4 @@
-<html><head><base href="https://daisy-pictures.com/%20perfect%20now%20make%20for%20the%20contact%20us%20section%20just%20put%20our%20email%20dont%20put%20a%20submission%20form">
+<html><head><base href="https://daisy-pictures.com/%20perfect%20now%20keep%20the%20same%20style%20but%20make%20it%20flow%20smoother%20for%20desktop%20and%20mobile">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Daisy Pictures - Premier Film Production Services in the Canary Islands | Tax Incentives, Studios, and Equipment Rental</title>
@@ -7,18 +7,35 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap');
 
-  body, html {
+  :root {
+    --primary-color: #f1c40f;
+    --secondary-color: #f39c12;
+    --text-color: #fff;
+    --bg-color: #000;
+    --card-bg-color: #111;
+    --header-height: 70px;
+  }
+
+  * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+  }
+
+  body, html {
     font-family: 'Montserrat', sans-serif;
-    background-color: #000;
-    color: #fff;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
     overflow-x: hidden;
+    scroll-behavior: smooth;
   }
 
   .container {
-    max-width: 100%;
-    padding: 0;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
   }
 
   .header {
@@ -29,6 +46,7 @@
     background: url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1968&q=80') no-repeat center center;
     background-size: cover;
     position: relative;
+    padding-top: var(--header-height);
   }
 
   .header::after {
@@ -48,7 +66,7 @@
   }
 
   h1 {
-    font-size: 5em;
+    font-size: clamp(2.5rem, 5vw, 5rem);
     font-weight: 700;
     letter-spacing: 10px;
     margin-bottom: 20px;
@@ -56,7 +74,7 @@
   }
 
   .tagline {
-    font-size: 1.5em;
+    font-size: clamp(1rem, 2vw, 1.5rem);
     font-weight: 300;
     letter-spacing: 5px;
     margin-bottom: 40px;
@@ -64,112 +82,20 @@
 
   .cta-button {
     display: inline-block;
-    background: #fff;
-    color: #000;
+    background: var(--primary-color);
+    color: var(--bg-color);
     padding: 15px 30px;
     text-decoration: none;
     font-weight: 700;
     font-size: 1.2em;
     letter-spacing: 3px;
     transition: all 0.3s ease;
-    border: 2px solid #fff;
+    border: 2px solid var(--primary-color);
   }
 
   .cta-button:hover {
-    background: #000;
-    color: #fff;
-  }
-
-  .incentives, .services {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 50px 5%;
-  }
-
-  .incentive-card, .service-card {
-    flex-basis: calc(50% - 40px);
-    margin: 20px;
-    padding: 40px;
-    background: #111;
-    transition: transform 0.3s ease;
-  }
-
-  .incentive-card:hover, .service-card:hover {
-    transform: scale(1.05);
-  }
-
-  .incentive-card h2, .service-card h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-  }
-
-  .incentive-card p, .incentive-card ul, .service-card p, .service-card ul {
-    font-weight: 300;
-    line-height: 1.6;
-  }
-
-  @media (max-width: 768px) {
-    .incentive-card, .service-card {
-      flex-basis: 100%;
-    }
-    h1 {
-      font-size: 3em;
-    }
-  }
-
-  .quote {
-    text-align: center;
-    padding: 100px 20px;
-    font-size: 2em;
-    font-weight: 300;
-    font-style: italic;
-    background: #222;
-  }
-
-  .footer {
-    text-align: center;
-    padding: 50px 20px;
-    background: #000;
-    font-weight: 300;
-  }
-
-  .studio-facilities, .equipment-rental {
-    background: #111;
-    padding: 50px 5%;
-    text-align: center;
-  }
-
-  .studio-facilities h2, .equipment-rental h2 {
-    font-size: 3em;
-    margin-bottom: 30px;
-    text-transform: uppercase;
-    letter-spacing: 5px;
-  }
-
-  .facility-grid, .equipment-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    margin-top: 50px;
-  }
-
-  .facility-item, .equipment-item {
-    background: #222;
-    padding: 30px;
-    border-radius: 10px;
-    transition: all 0.3s ease;
-  }
-
-  .facility-item:hover, .equipment-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(255,255,255,0.1);
-  }
-
-  .facility-item h3, .equipment-item h3 {
-    font-size: 1.5em;
-    margin-bottom: 15px;
+    background: transparent;
+    color: var(--primary-color);
   }
 
   .nav {
@@ -179,13 +105,19 @@
     right: 0;
     background: rgba(0,0,0,0.8);
     z-index: 1000;
-    padding: 20px;
+    height: var(--header-height);
     display: flex;
     justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+
+  .nav.scrolled {
+    background: rgba(0,0,0,0.95);
   }
 
   .nav a {
-    color: #fff;
+    color: var(--text-color);
     text-decoration: none;
     margin: 0 20px;
     font-weight: 700;
@@ -194,20 +126,56 @@
   }
 
   .nav a:hover {
-    color: #f1c40f;
+    color: var(--primary-color);
+  }
+
+  .section {
+    padding: 80px 0;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    text-align: center;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+  }
+
+  .card {
+    background: var(--card-bg-color);
+    padding: 30px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(255,255,255,0.1);
+  }
+
+  .card h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+  }
+
+  .quote {
+    text-align: center;
+    padding: 100px 20px;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 300;
+    font-style: italic;
+    background: #222;
   }
 
   .calculator-section {
-    background: #111;
-    padding: 50px 5%;
-    text-align: center;
-  }
-
-  .calculator-section h2 {
-    font-size: 3em;
-    margin-bottom: 30px;
-    text-transform: uppercase;
-    letter-spacing: 5px;
+    background: var(--card-bg-color);
+    padding: 50px 0;
   }
 
   .calculator {
@@ -222,7 +190,6 @@
   .calculator label {
     display: block;
     margin-bottom: 10px;
-    text-align: left;
     font-weight: 700;
     letter-spacing: 1px;
   }
@@ -234,7 +201,7 @@
     margin-bottom: 20px;
     background: #333;
     border: none;
-    color: #fff;
+    color: var(--text-color);
     font-size: 1em;
     border-radius: 5px;
   }
@@ -242,9 +209,9 @@
   .calculator button {
     width: 100%;
     padding: 15px;
-    background: #f1c40f;
+    background: var(--primary-color);
     border: none;
-    color: #000;
+    color: var(--bg-color);
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -255,7 +222,7 @@
   }
 
   .calculator button:hover {
-    background: #f39c12;
+    background: var(--secondary-color);
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(243,156,18,0.3);
   }
@@ -263,7 +230,6 @@
   .calculator .result {
     margin-top: 30px;
     font-size: 1.2em;
-    text-align: left;
     background: #333;
     padding: 20px;
     border-radius: 5px;
@@ -273,20 +239,13 @@
   .calculator .result h3 {
     margin-bottom: 15px;
     font-size: 1.5em;
-    color: #f1c40f;
+    color: var(--primary-color);
   }
 
   .contact-us {
-    background: #111;
-    padding: 100px 5%;
+    background: var(--card-bg-color);
+    padding: 100px 0;
     text-align: center;
-  }
-
-  .contact-us h2 {
-    font-size: 3em;
-    margin-bottom: 30px;
-    text-transform: uppercase;
-    letter-spacing: 5px;
   }
 
   .contact-info {
@@ -295,18 +254,49 @@
   }
 
   .contact-info a {
-    color: #f1c40f;
+    color: var(--primary-color);
     text-decoration: none;
     transition: all 0.3s ease;
   }
 
   .contact-info a:hover {
-    color: #f39c12;
+    color: var(--secondary-color);
+  }
+
+  .footer {
+    text-align: center;
+    padding: 50px 20px;
+    background: var(--bg-color);
+    font-weight: 300;
+  }
+
+  @media (max-width: 768px) {
+    .nav {
+      flex-direction: column;
+      height: auto;
+      padding: 20px 0;
+    }
+
+    .nav a {
+      margin: 10px 0;
+    }
+
+    .header {
+      padding-top: 120px;
+    }
+
+    .section {
+      padding: 60px 0;
+    }
+
+    .quote {
+      padding: 60px 20px;
+    }
   }
 </style>
 </head>
 <body>
-  <nav class="nav">
+  <nav id="navbar" class="nav">
     <a href="#home">HOME</a>
     <a href="#incentives">INCENTIVES</a>
     <a href="#studio">STUDIO</a>
@@ -318,7 +308,7 @@
 
   <header id="home" class="header">
     <div class="header-content">
-      <h1>DAISY PICTURES</h1>
+      <h1 data-value="DAISY PICTURES">DAISY PICTURES</h1>
       <p class="tagline">PREMIER FILM PRODUCTION IN THE CANARY ISLANDS</p>
       <a href="#incentives" class="cta-button">EXPLORE OUR OFFERINGS</a>
     </div>
@@ -328,106 +318,75 @@
     "Innovative storytelling meets unparalleled production value in the heart of the Canary Islands."
   </div>
 
-  <div class="container">
-    <section id="incentives" class="incentives">
-      <div class="incentive-card">
-        <h2>INTERNATIONAL PRODUCTIONS</h2>
-        <p>Unlock substantial financial benefits with our industry-leading 50% tax rebate on eligible expenditure for international productions in the Canary Islands.</p>
-        <ul>
-          <li>Minimum spend: €1 million, ensuring accessibility for mid to high-budget productions</li>
-          <li>Maximum rebate: €18 million, providing significant savings on large-scale projects</li>
-          <li>Eligible formats: Feature films, TV series, Animation projects, Documentaries</li>
-          <li>Quick turnaround: Rebates typically processed within 6-8 months after production wrap</li>
-          <li>No cultural test required, offering flexibility for various storytelling approaches</li>
-        </ul>
+  <section id="incentives" class="section">
+    <div class="container">
+      <h2 class="section-title">TAX INCENTIVES</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>INTERNATIONAL PRODUCTIONS</h3>
+          <p>Unlock substantial financial benefits with our industry-leading 50% tax rebate on eligible expenditure for international productions in the Canary Islands.</p>
+          <ul>
+            <li>Minimum spend: €1 million</li>
+            <li>Maximum rebate: €18 million</li>
+            <li>Eligible formats: Feature films, TV series, Animation, Documentaries</li>
+            <li>No cultural test required</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>SPANISH PRODUCTIONS</h3>
+          <p>Benefit from one of Europe's most competitive tax incentives with our 45-50% tax credit for national productions.</p>
+          <ul>
+            <li>45% for the first €1 million, 50% for amounts exceeding €1 million</li>
+            <li>Minimum spend: €200,000 for animation and short films, €1 million for others</li>
+            <li>Maximum credit: €18 million</li>
+            <li>Additional access to national and regional funding schemes</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>CANARY ISLANDS SPECIAL ZONE (ZEC)</h3>
+          <p>Maximize your production's financial efficiency with an incredibly low 4% corporate tax rate in the Canary Islands Special Zone.</p>
+          <ul>
+            <li>Minimum investment: €100,000 in fixed assets within two years</li>
+            <li>Employment requirement: Creation of at least 5 full-time jobs</li>
+            <li>Validity: Benefits applicable until 2026, with potential extension</li>
+            <li>Can be combined with other incentives</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>PRODUCTION ADVANTAGES</h3>
+          <ul>
+            <li>Diverse locations: From beaches to volcanic landscapes</li>
+            <li>Year-round filming: Over 300 days of sunshine annually</li>
+            <li>Professional infrastructure: Experienced local crew</li>
+            <li>Strategic location: 2-4 hour flight from major European cities</li>
+            <li>Cost-effective: Competitive prices for production necessities</li>
+          </ul>
+        </div>
       </div>
-      <div class="incentive-card">
-        <h2>SPANISH PRODUCTIONS</h2>
-        <p>Benefit from one of Europe's most competitive tax incentives with our 45-50% tax credit for national productions.</p>
-        <ul>
-          <li>Tiered incentive: 45% for the first €1 million, 50% for amounts exceeding €1 million</li>
-          <li>Minimum spend: €200,000 for animation and short films, €1 million for other formats</li>
-          <li>Maximum credit: €18 million, allowing for substantial savings on big-budget projects</li>
-          <li>Eligible formats: Feature films, Short films, TV series, Animation projects</li>
-          <li>Additional benefits: Potential access to national and regional funding schemes</li>
-        </ul>
-      </div>
-      <div class="incentive-card">
-        <h2>CANARY ISLANDS SPECIAL ZONE (ZEC)</h2>
-        <p>Maximize your production's financial efficiency with an incredibly low 4% corporate tax rate in the Canary Islands Special Zone.</p>
-        <ul>
-          <li>Minimum investment: €100,000 in fixed assets within the first two years</li>
-          <li>Employment requirement: Creation of at least 5 full-time jobs</li>
-          <li>Validity: Benefits applicable until 2026, with potential for extension</li>
-          <li>Compatibility: Can be combined with other incentives for maximum financial advantage</li>
-          <li>Wide applicability: Covers various aspects of audiovisual production and related services</li>
-        </ul>
-      </div>
-      <div class="incentive-card">
-        <h2>PRODUCTION ADVANTAGES</h2>
-        <p>The Canary Islands offer a unique blend of financial incentives and natural advantages that make it an ideal filming location:</p>
-        <ul>
-          <li>Diverse locations: From pristine beaches and lush forests to otherworldly volcanic landscapes and modern cityscapes</li>
-          <li>Year-round filming: Enjoy over 300 days of sunshine annually with average temperatures between 18-24°C (64-75°F)</li>
-          <li>Professional infrastructure: Access to experienced local crew and state-of-the-art production facilities</li>
-          <li>Strategic location: Just a 2-4 hour flight from major European cities, and a gateway to African locations</li>
-          <li>Cost-effective: Competitive prices for accommodation, transportation, and other production necessities</li>
-          <li>Multilingual workforce: Skilled professionals fluent in Spanish, English, and other major languages</li>
-        </ul>
-      </div>
-    </section>
-  </div>
+    </div>
+  </section>
 
   <div class="quote">
     "Elevating productions through strategic partnerships, unmatched locations, and cutting-edge technology."
   </div>
 
-  <section id="studio" class="studio-facilities">
-    <h2>DAISY PICTURES STUDIOS</h2>
-    <p>Experience world-class film production with our state-of-the-art facilities designed to meet and exceed the demands of modern film and television production.</p>
-    <div class="facility-grid">
-      <div class="facility-item">
-        <h3>Soundstages</h3>
-        <p>6 fully equipped soundstages ranging from 10,000 to 40,000 sq ft. Each stage features:</p>
-        <ul>
-          <li>Acoustically optimized design for premium sound recording</li>
-          <li>Flexible lighting grids with remote-controlled hoists</li>
-          <li>High-capacity power supply for even the most demanding setups</li>
-          <li>Climate control systems for year-round comfort</li>
-          <li>High-speed internet and secure data management</li>
-        </ul>
-      </div>
-      <div class="facility-item">
-        <h3>Virtual Production Stage</h3>
-        <p>Cutting-edge LED wall technology enabling real-time, in-camera VFX and immersive environments.</p>
-        <ul>
-          <li>180-degree curved LED wall with a 20ft height and 60ft diameter</li>
-          <li>State-of-the-art rendering engines for real-time environment creation</li>
-          <li>Motion capture integration for seamless virtual production workflows</li>
-          <li>On-site tech support and training for optimal utilization</li>
-        </ul>
-      </div>
-      <div class="facility-item">
-        <h3>Post-Production Suites</h3>
-        <p>Comprehensive post-production facilities to finalize your project to the highest standards:</p>
-        <ul>
-          <li>10 fully-equipped edit bays with the latest software suites</li>
-          <li>3 color grading suites with HDR capabilities</li>
-          <li>2 Dolby Atmos certified mixing stages</li>
-          <li>VFX workstations with high-performance GPUs</li>
-          <li>Secure cloud-based collaboration tools for remote work</li>
-        </ul>
-      </div>
-      <div class="facility-item">
-        <h3>Costume and Prop Workshops</h3>
-        <p>Fully equipped workshops for bringing any creative vision to life:</p>
-        <ul>
-          <li>Spacious costume design and fabrication areas</li>
-          <li>Comprehensive prop making facilities with 3D printing capabilities</li>
-          <li>Large-scale set construction workshop</li>
-          <li>Makeup and prosthetics labs</li>
-          <li>Ample storage for costumes, props, and set pieces</li>
-        </ul>
+  <section id="studio" class="section">
+    <div class="container">
+      <h2 class="section-title">DAISY PICTURES STUDIOS</h2>
+      <p>Experience world-class film production with our state-of-the-art facilities designed to meet and exceed the demands of modern film and television production.</p>
+      <div class="grid">
+        <div class="card">
+          <h3>Soundstages</h3>
+        </div>
+        <div class="card">
+          <h3>Virtual Production Stage</h3>
+        </div>
+        <div class="card">
+          <h3>Post-Production Suites</h3>
+        </div>
+        <div class="card">
+          <h3>Costume and Prop Workshops</h3>
+        </div>
       </div>
     </div>
   </section>
@@ -436,49 +395,55 @@
     "From concept to screen, we deliver excellence at every stage of production."
   </div>
 
-  <section id="equipment" class="equipment-rental">
-    <h2>EQUIPMENT RENTAL</h2>
-    <p>Access top-of-the-line equipment to bring your creative vision to life. Our comprehensive inventory includes the latest in camera, lighting, grip, and audio gear.</p>
-    <div class="equipment-grid">
-      <div class="equipment-item">
-        <h3>Cameras</h3>
-        <ul>
-          <li>ARRI Alexa Mini LF and Alexa 65</li>
-          <li>RED Monstro 8K VV and Komodo 6K</li>
-          <li>Sony Venice 2 and FX9</li>
-          <li>Wide selection of prime and zoom lenses</li>
-          <li>Specialty cameras for underwater and aerial shooting</li>
-        </ul>
-      </div>
-      <div class="equipment-item">
-        <h3>Lighting</h3>
-        <ul>
-          <li>ARRI SkyPanel and L-Series LED fixtures</li>
-          <li>Kino Flo LED and fluorescent systems</li>
-          <li>HMI fixtures from 575W to 18K</li>
-          <li>Tungsten fixtures including ARRI and Mole-Richardson</li>
-          <li>Innovative LED tube and flexible panel solutions</li>
-        </ul>
-      </div>
-      <div class="equipment-item">
-        <h3>Grip Equipment</h3>
-        <ul>
-          <li>Chapman-Leonard dollies and cranes</li>
-          <li>Steadicam and gimbal stabilization systems</li>
-          <li>Extensive track and dance floor inventory</li>
-          <li>Full range of stands, clamps, and rigging equipment</li>
-          <li>Specialized car mounts and rigs</li>
-        </ul>
-      </div>
-      <div class="equipment-item">
-        <h3>Audio Gear</h3>
-        <ul>
-          <li>Sound Devices multi-track field recorders</li>
-          <li>Wireless microphone systems from Lectrosonics and Sennheiser</li>
-          <li>Boom microphones from Schoeps and Sennheiser</li>
-          <li>Full complement of audio accessories and cable</li>
-          <li>Specialized equipment for music recording and ADR</li>
-        </ul>
+  <section id="equipment" class="section">
+    <div class="container">
+      <h2 class="section-title">EQUIPMENT RENTAL</h2>
+      <p>Access top-of-the-line equipment to bring your creative vision to life. Our comprehensive inventory includes the latest in camera, lighting, grip, and audio gear.</p>
+      <div class="grid">
+        <div class="card">
+          <h3>Cameras</h3>
+          <ul>
+            <li>ARRI Alexa Mini LF and Alexa 65</li>
+            <li>RED Monstro 8K VV and Komodo 6K</li>
+            <li>Sony Venice 2 and FX9</li>
+            <li>Wide selection of prime and zoom lenses</li>
+            <li>Specialty cameras for underwater and aerial shooting</li>
+          </ul>
+          <p>...and more, just email us!</p>
+        </div>
+        <div class="card">
+          <h3>Lighting</h3>
+          <ul>
+            <li>ARRI SkyPanel and L-Series LED fixtures</li>
+            <li>Kino Flo LED and fluorescent systems</li>
+            <li>HMI fixtures from 575W to 18K</li>
+            <li>Tungsten fixtures including ARRI and Mole-Richardson</li>
+            <li>Innovative LED tube and flexible panel solutions</li>
+          </ul>
+          <p>...and more, just email us!</p>
+        </div>
+        <div class="card">
+          <h3>Grip Equipment</h3>
+          <ul>
+            <li>Chapman-Leonard dollies and cranes</li>
+            <li>Steadicam and gimbal stabilization systems</li>
+            <li>Extensive track and dance floor inventory</li>
+            <li>Full range of stands, clamps, and rigging equipment</li>
+            <li>Specialized car mounts and rigs</li>
+          </ul>
+          <p>...and more, just email us!</p>
+        </div>
+        <div class="card">
+          <h3>Audio Gear</h3>
+          <ul>
+            <li>Sound Devices multi-track field recorders</li>
+            <li>Wireless microphone systems from Lectrosonics and Sennheiser</li>
+            <li>Boom microphones from Schoeps and Sennheiser</li>
+            <li>Full complement of audio accessories and cable</li>
+            <li>Specialized equipment for music recording and ADR</li>
+          </ul>
+          <p>...and more, just email us!</p>
+        </div>
       </div>
     </div>
   </section>
@@ -487,166 +452,51 @@
     "Cutting-edge technology meets creative excellence in every frame."
   </div>
 
-  <section id="services" class="services">
-    <div class="service-card">
-      <h2>PRE-PRODUCTION</h2>
-      <ul>
-        <li>Script Development and Analysis
+  <section id="services" class="section">
+    <div class="container">
+      <h2 class="section-title">OUR SERVICES</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>PRE-PRODUCTION</h3>
           <ul>
-            <li>Collaborative story development with experienced writers</li>
-            <li>Script doctoring and polishing services</li>
-            <li>Budget-conscious script breakdowns</li>
+            <li>Script Development and Analysis</li>
+            <li>Location Scouting and Management</li>
+            <li>Casting Services</li>
+            <li>Storyboarding and Previsualization</li>
+            <li>Budgeting and Production Scheduling</li>
           </ul>
-        </li>
-        <li>Location Scouting and Management
+        </div>
+        <div class="card">
+          <h3>PRODUCTION</h3>
           <ul>
-            <li>Extensive database of unique Canary Islands locations</li>
-            <li>Virtual location tours for remote decision-making</li>
-            <li>Permit acquisition and location agreement negotiation</li>
+            <li>Experienced Local and International Crew</li>
+            <li>High-end Equipment Rental</li>
+            <li>On-Set VFX Supervision</li>
+            <li>Aerial Cinematography Services</li>
+            <li>Comprehensive Production Management</li>
           </ul>
-        </li>
-        <li>Casting Services
+        </div>
+        <div class="card">
+          <h3>POST-PRODUCTION</h3>
           <ul>
-            <li>Access to local and international talent pools</li>
-            <li>Organization of casting calls and self-tape submissions</li>
-            <li>Talent contract negotiation and management</li>
+            <li>Offline and Online Editing</li>
+            <li>Visual Effects and CGI</li>
+            <li>Color Grading and DI</li>
+            <li>Sound Design and Mixing</li>
+            <li>Music Composition and Licensing</li>
           </ul>
-        </li>
-        <li>Storyboarding and Previsualization
+        </div>
+        <div class="card">
+          <h3>DISTRIBUTION & MARKETING</h3>
           <ul>
-            <li>Collaboration with skilled storyboard artists</li>
-            <li>3D previsualization for complex sequences</li>
-            <li>Integration with virtual production workflows</li>
+            <li>Festival Strategy and Submission</li>
+            <li>International Sales and Distribution</li>
+            <li>Digital Marketing Campaigns</li>
+            <li>Premiere and Event Planning</li>
+            <li>EPK and Press Kit Creation</li>
           </ul>
-        </li>
-        <li>Budgeting and Production Scheduling
-          <ul>
-            <li>Detailed budget breakdowns optimized for tax incentives</li>
-            <li>Efficient scheduling to maximize location and resource use</li>
-            <li>Risk assessment and contingency planning</li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-    <div class="service-card">
-      <h2>PRODUCTION</h2>
-      <ul>
-        <li>Experienced Local and International Crew
-          <ul>
-            <li>Multilingual professionals across all departments</li>
-            <li>Specialized crew for underwater and aerial filming</li>
-            <li>Flexible crewing options to suit project needs and budgets</li>
-          </ul>
-        </li>
-        <li>High-end Equipment Rental
-          <ul>
-            <li>Comprehensive inventory of latest camera, lighting, and grip gear</li>
-            <li>Specialty equipment for unique shooting scenarios</li>
-            <li>On-set technical support and troubleshooting</li>
-          </ul>
-        </li>
-        <li>On-Set VFX Supervision
-          <ul>
-            <li>Experienced VFX supervisors to guide on-set decisions</li>
-            <li>Integration with virtual production techniques</li>
-            <li>Data wrangling and management for VFX workflows</li>
-          </ul>
-        </li>
-        <li>Aerial Cinematography Services
-          <ul>
-            <li>Drone operations for dynamic aerial shots</li>
-            <li>Helicopter filming for expansive vistas</li>
-            <li>Compliance with local aviation regulations</li>
-          </ul>
-        </li>
-        <li>Comprehensive Production Management
-          <ul>
-            <li>Experienced line producers and production managers</li>
-            <li>Efficient daily operations and problem-solving</li>
-            <li>Budget tracking and cost reporting</li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-    <div class="service-card">
-      <h2>POST-PRODUCTION</h2>
-      <ul>
-        <li>Offline and Online Editing
-          <ul>
-            <li>State-of-the-art edit suites with latest software</li>
-            <li>Experienced editors across various genres</li>
-            <li>Remote collaboration options for global teams</li>
-          </ul>
-        </li>
-        <li>Visual Effects and CGI
-          <ul>
-            <li>High-end VFX creation and integration</li>
-            <li>3D modeling and animation services</li>
-            <li>Seamless compositing and clean-up work</li>
-          </ul>
-        </li>
-        <li>Color Grading and DI
-          <ul>
-            <li>HDR and SDR color grading capabilities</li>
-            <li>Experienced colorists with diverse portfolios</li>
-            <li>Digital intermediate process for feature films</li>
-          </ul>
-        </li>
-        <li>Sound Design and Mixing
-          <ul>
-            <li>Dolby Atmos certified mixing stages</li>
-            <li>Comprehensive sound design and Foley services</li>
-            <li>ADR recording and integration</li>
-          </ul>
-        </li>
-        <li>Music Composition and Licensing
-          <ul>
-            <li>Collaboration with talented composers</li>
-            <li>Access to extensive music libraries</li>
-            <li>Rights clearance and licensing services</li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-    <div class="service-card">
-      <h2>DISTRIBUTION & MARKETING</h2>
-      <ul>
-        <li>Festival Strategy and Submission
-          <ul>
-            <li>Tailored festival strategies for maximum exposure</li>
-            <li>Preparation of festival-specific deliverables</li>
-            <li>Representation at major film markets</li>
-          </ul>
-        </li>
-        <li>International Sales and Distribution
-          <ul>
-            <li>Connections with global distributors and sales agents</li>
-            <li>Negotiation of distribution deals</li>
-            <li>Guidance on territorial rights and release strategies</li>
-          </ul>
-        </li>
-        <li>Digital Marketing Campaigns
-          <ul>
-            <li>Social media strategy and management</li>
-            <li>Creation of engaging digital content</li>
-            <li>Targeted online advertising campaigns</li>
-          </ul>
-        </li>
-        <li>Premiere and Event Planning
-          <ul>
-            <li>Organization of red carpet premieres</li>
-            <li>Coordination of press junkets and interviews</li>
-            <li>Management of special screenings and Q&A sessions</li>
-          </ul>
-        </li>
-        <li>EPK and Press Kit Creation
-          <ul>
-            <li>Production of high-quality behind-the-scenes content</li>
-            <li>Design of compelling digital and print press kits</li>
-            <li>Creation of trailers and promotional clips</li>
-          </ul>
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -655,39 +505,43 @@
   </div>
 
   <section id="calculator" class="calculator-section">
-    <h2>INCENTIVE CALCULATOR</h2>
-    <div class="calculator">
-      <div>
-        <label for="budget">PROJECT BUDGET (€):</label>
-        <input type="number" id="budget" min="0" step="1000" placeholder="Enter your budget">
+    <div class="container">
+      <h2 class="section-title">INCENTIVE CALCULATOR</h2>
+      <div class="calculator">
+        <div>
+          <label for="budget">PROJECT BUDGET (€):</label>
+          <input type="number" id="budget" min="0" step="1000" placeholder="Enter your budget">
+        </div>
+        <div>
+          <label for="projectType">PROJECT TYPE:</label>
+          <select id="projectType">
+            <option value="international">International</option>
+            <option value="national">National</option>
+          </select>
+        </div>
+        <div>
+          <label for="projectCategory">PROJECT CATEGORY:</label>
+          <select id="projectCategory">
+            <option value="feature">Feature Film</option>
+            <option value="shortFilm">Short Film</option>
+            <option value="tvSeries">TV Series</option>
+            <option value="animation">Animation</option>
+            <option value="documentary">Documentary</option>
+          </select>
+        </div>
+        <button onclick="calculateIncentive()">CALCULATE INCENTIVE</button>
+        <div id="result" class="result"></div>
       </div>
-      <div>
-        <label for="projectType">PROJECT TYPE:</label>
-        <select id="projectType">
-          <option value="international">International</option>
-          <option value="national">National</option>
-        </select>
-      </div>
-      <div>
-        <label for="projectCategory">PROJECT CATEGORY:</label>
-        <select id="projectCategory">
-          <option value="feature">Feature Film</option>
-          <option value="shortFilm">Short Film</option>
-          <option value="tvSeries">TV Series</option>
-          <option value="animation">Animation</option>
-          <option value="documentary">Documentary</option>
-        </select>
-      </div>
-      <button onclick="calculateIncentive()">CALCULATE INCENTIVE</button>
-      <div id="result" class="result"></div>
     </div>
   </section>
 
   <section id="contact" class="contact-us">
-    <h2>CONTACT US</h2>
-    <div class="contact-info">
-      <p>For inquiries, please email us at: <a href="mailto:management@daisypicturesinc.com">management@daisypicturesinc.com</a></p>
-      <p>Phone: +34 627 657 748</p>
+    <div class="container">
+      <h2 class="section-title">CONTACT US</h2>
+      <div class="contact-info">
+        <p>For inquiries, please email us at: <a href="mailto:management@daisypicturesinc.com">management@daisypicturesinc.com</a></p>
+        <p>Phone: +34 627 657 748</p>
+      </div>
     </div>
   </section>
 
@@ -738,6 +592,13 @@
       const parallax = document.querySelector('.header');
       let scrollPosition = window.pageYOffset;
       parallax.style.backgroundPositionY = scrollPosition * 0.7 + 'px';
+
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 100) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
     });
 
     function calculateIncentive() {
@@ -808,6 +669,34 @@
 
       document.getElementById('result').innerHTML = `${message}<br><br>${details}`;
     }
+
+    // Smooth scroll behavior
+    const scroll = new SmoothScroll('a[href*="#"]', {
+      speed: 800,
+      speedAsDuration: true
+    });
+
+    // Intersection Observer for fade-in effect
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = {
+      threshold: 0.5,
+      rootMargin: "0px 0px -100px 0px"
+    };
+
+    const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+          return;
+        } else {
+          entry.target.classList.add('appear');
+          appearOnScroll.unobserve(entry.target);
+        }
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
   </script>
 </body>
 </html>
