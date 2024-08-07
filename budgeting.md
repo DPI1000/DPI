@@ -1,7 +1,3 @@
-layout: page
-title: "BUDGET"
-permalink: /budget
-
 <html><head><base href="https://cinebudget-pro.com/%20perfect%20now%20dont%20make%20everything%20pre%20loaded%20make%20it%20expandable%20and%20easy%20workflow">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
