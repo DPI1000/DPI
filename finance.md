@@ -1,7 +1,7 @@
 <html><head><base href="https://cinebudget-pro.com/financialplan%20now%20make%20the%20screenshot%20take%20a%20picture%20of%20the%20chart%20as%20well%20and%20remove%20project%20description%20categories">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CineBudget Pro: Financial Plan - Euro Edition</title>
+<title>DAISY FINANCING PRO</title>
 <style>
   @font-face {
     font-family: 'Futura';
