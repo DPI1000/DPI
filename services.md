@@ -1,3 +1,5 @@
+name: something
+title: null
 <html><head><base href="https://daisy-pictures.com/services%20remove%206%20and%207%20and%20add%20in%20equipment%20rentals">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
