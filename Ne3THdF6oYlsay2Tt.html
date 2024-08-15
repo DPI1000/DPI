@@ -1,0 +1,770 @@
+<html><head><base href="https://cinebudget-pro.com/%20perfect%20now%20incorporate%20our%20html%20logo%20where%20you%20can%20%3Cimg%20src=%22https://i.imghippo.com/files/wQ3Bs1723745453.png%22%20alt=%22%22%20border=%220%22%3E">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daisy Budget Pro - Daniel Arsham Inspired</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&display=swap');
+
+  :root {
+    --primary-color: #000000;
+    --secondary-color: #ffffff;
+    --background-color: #f0f0f0;
+    --text-color: #000000;
+    --border-radius: 0px;
+    --transition-speed: 0.3s;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    font-size: 14px;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .logo-container {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .logo {
+    max-width: 200px;
+    height: auto;
+    filter: grayscale(100%);
+  }
+
+  h1, h2, h3 {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  h1 {
+    font-size: 3rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background-color: var(--primary-color);
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+  }
+
+  .budget-form, .export-container, .project-details, .budget-summary {
+    background-color: var(--secondary-color);
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: var(--box-shadow);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .budget-form::before, .export-container::before, .project-details::before, .budget-summary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background-color: var(--primary-color);
+  }
+
+  .budget-category h2 {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 2px solid var(--primary-color);
+  }
+
+  .budget-category h2::after {
+    content: '+';
+    font-size: 1.5em;
+    transition: transform var(--transition-speed);
+  }
+
+  .budget-category h2.open::after {
+    transform: rotate(45deg);
+  }
+
+  .budget-items-container {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+  }
+
+  .budget-items-container.open {
+    max-height: 2000px;
+  }
+
+  .budget-subcategory {
+    margin: 20px 0;
+    padding-left: 20px;
+    border-left: 2px solid var(--primary-color);
+  }
+
+  .budget-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: var(--background-color);
+    position: relative;
+  }
+
+  input[type="text"], input[type="number"], input[type="date"], select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid var(--primary-color);
+    background-color: transparent;
+    color: var(--text-color);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+  }
+
+  button {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color var(--transition-speed);
+  }
+
+  button:hover {
+    background-color: #333333;
+  }
+
+  #total-budget {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: right;
+    margin-top: 20px;
+    color: var(--primary-color);
+  }
+
+  #live-export, #screenshot-content {
+    font-family: 'Roboto Mono', monospace;
+    white-space: pre-wrap;
+    background-color: var(--background-color);
+    padding: 20px;
+    font-size: 12px;
+    line-height: 1.4;
+    overflow-x: auto;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  .search-bar {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 2px solid var(--primary-color);
+    font-size: 16px;
+    font-family: 'Roboto Mono', monospace;
+    background-color: transparent;
+  }
+
+  .highlight {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .line-item-number {
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-right: 10px;
+  }
+
+  .expand-all-button {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .budget-item-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .budget-item-flex input {
+    flex: 1;
+    min-width: 80px;
+  }
+
+  .budget-item-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .budget-item-buttons button {
+    flex: 1;
+  }
+
+  .budget-item-notes {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+  }
+
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    text-align: center;
+    border-radius: var(--border-radius);
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .loading-spinner {
+    border: 4px solid var(--background-color);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .budget-summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+  }
+
+  .budget-summary-total {
+    font-weight: bold;
+    font-size: 1.3em;
+    border-top: 2px solid var(--primary-color);
+    padding-top: 15px;
+    margin-top: 15px;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 10px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+    }
+
+    .budget-form, .export-container, .project-details, .budget-summary {
+      padding: 20px;
+    }
+
+    .budget-item {
+      padding: 10px;
+    }
+
+    input[type="text"], input[type="number"], input[type="date"], select, textarea {
+      font-size: 14px;
+    }
+
+    button {
+      font-size: 12px;
+      padding: 10px 15px;
+    }
+
+    #live-export, #screenshot-content {
+      font-size: 11px;
+      max-height: 200px;
+    }
+
+    .logo {
+      max-width: 150px;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo-container">
+      <img src="https://i.imghippo.com/files/wQ3Bs1723745453.png" alt="Daisy Budget Pro Logo" class="logo" width="200" height="100">
+    </div>
+    <h1>Daisy Budget Pro</h1>
+    
+    <div class="project-details">
+      <h2>Project Info</h2>
+      <input type="text" id="project-name" placeholder="Project Name" oninput="updateExport()">
+      <input type="text" id="production-company" placeholder="Production Company" oninput="updateExport()">
+      <input type="date" id="project-date" oninput="updateExport()">
+      <select id="currency" onchange="updateExport()">
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="GBP">GBP</option>
+        <option value="JPY">JPY</option>
+        <option value="CAD">CAD</option>
+      </select>
+    </div>
+
+    <div class="budget-summary">
+      <h2>Budget Summary</h2>
+      <div id="category-summaries"></div>
+      <div class="budget-summary-total">
+        <div class="budget-summary-item">
+          <span>Total Budget:</span>
+          <span id="total-budget">$0.00</span>
+        </div>
+      </div>
+    </div>
+
+    <input type="text" id="search-bar" class="search-bar" placeholder="Search budget items...">
+
+    <div class="budget-form">
+      <button class="expand-all-button" onclick="toggleAllCategories()">Expand/Collapse All</button>
+      <div id="budget-categories"></div>
+      <button onclick="calculateTotal()">Update Total</button>
+      <button onclick="exportBudget()">Export to TXT</button>
+      <button onclick="exportToPDF()">Export to PDF</button>
+    </div>
+
+    <div class="export-container">
+      <h2>Live Export</h2>
+      <button class="screenshot-button" onclick="exportScreenshot()">Export Screenshot</button>
+      <div id="live-export"></div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    // The JavaScript code remains the same as in the previous version
+    // Just copy and paste the entire JavaScript code here
+    const budgetCategories = [
+      {
+        name: "1. Story & Rights",
+        subcategories: [
+          { name: "Story Rights", items: ["Option Purchase", "Purchase of Completed Screenplay", "Underlying Rights", "Life Rights"] },
+          { name: "Screenplay", items: ["Writer's Fee", "Rewrite Fee", "Polish Fee", "Treatment", "Outline"] },
+          { name: "Research", items: ["Research Fees", "Research Expenses", "Consultants"] }
+        ]
+      },
+      {
+        name: "2. Talent",
+        subcategories: [
+          { name: "Producer", items: ["Producer", "Co-Producer", "Associate Producer", "Line Producer", "Executive Producer"] },
+          { name: "Director", items: ["Director", "Second Unit Director", "Assistant Director"] },
+          { name: "Cast", items: ["Principal Cast", "Supporting Cast", "Day Players", "Stunt Performers", "Extras", "Casting Director"] }
+        ]
+      },
+      {
+        name: "3. Production Staff",
+        subcategories: [
+          { name: "Production", items: ["Production Manager", "Production Coordinator", "Production Assistants", "Script Supervisor"] },
+          { name: "Assistant Directors", items: ["1st Assistant Director", "2nd Assistant Director", "2nd 2nd Assistant Director"] },
+          { name: "Camera", items: ["Director of Photography", "Camera Operator", "1st Assistant Camera", "2nd Assistant Camera", "Digital Imaging Technician"] },
+          { name: "Sound", items: ["Production Sound Mixer", "Boom Operator", "Sound Utility"] },
+          { name: "Grip & Electric", items: ["Gaffer", "Best Boy Electric", "Key Grip", "Best Boy Grip", "Dolly Grip"] }
+        ]
+      },
+      {
+        name: "4. Art Department",
+        subcategories: [
+          { name: "Art Direction", items: ["Production Designer", "Art Director", "Set Designer", "Concept Artist"] },
+          { name: "Set Decoration", items: ["Set Decorator", "Leadman", "Set Dressers", "Buyer"] },
+          { name: "Props", items: ["Property Master", "Assistant Property Master", "Props Assistants"] },
+          { name: "Construction", items: ["Construction Coordinator", "Head Carpenter", "Scenic Artist"] }
+        ]
+      },
+      {
+        name: "5. Wardrobe",
+        subcategories: [
+          { name: "Costume Design", items: ["Costume Designer", "Assistant Costume Designer", "Costume Supervisor"] },
+          { name: "Wardrobe", items: ["Wardrobe Supervisor", "Set Costumer", "Seamstress/Tailor"] }
+        ]
+      },
+      {
+        name: "6. Makeup & Hair",
+        subcategories: [
+          { name: "Makeup", items: ["Makeup Department Head", "Key Makeup Artist", "Special Effects Makeup"] },
+          { name: "Hair", items: ["Hair Department Head", "Key Hair Stylist", "Additional Hair Stylists"] }
+        ]
+      },
+      {
+        name: "7. Camera & Electrical Equipment",
+        subcategories: [
+          { name: "Camera", items: ["Camera Package", "Lenses", "Camera Support", "DIT Station"] },
+          { name: "Lighting", items: ["Lighting Package", "Generators", "Expendables"] },
+          { name: "Grip", items: ["Grip Package", "Crane/Dolly", "Special Equipment"] }
+        ]
+      },
+      {
+        name: "8. Production Sound",
+        subcategories: [
+          { name: "Sound Equipment", items: ["Sound Package", "Wireless Mics", "Boom Poles"] },
+          { name: "Playback", items: ["Playback Equipment", "Speakers"] }
+        ]
+      },
+      {
+        name: "9. Transportation",
+        subcategories: [
+          { name: "Vehicles", items: ["Production Vehicles", "Cast Transportation", "Crew Transportation"] },
+          { name: "Fuel & Parking", items: ["Fuel", "Parking Fees", "Tolls"] }
+        ]
+      },
+      {
+        name: "10. Location",
+        subcategories: [
+          { name: "Location Fees", items: ["Location Rentals", "Permit Fees", "Site Rentals"] },
+          { name: "Location Staff", items: ["Location Manager", "Location Scouts", "Location Assistants"] },
+          { name: "Location Expenses", items: ["Location Security", "Site Restoration", "Cleanup"] }
+        ]
+      },
+      {
+        name: "11. Production Office",
+        subcategories: [
+          { name: "Office Rental", items: ["Production Office Rent", "Office Equipment", "Office Supplies"] },
+          { name: "Communications", items: ["Phones", "Internet", "Walkie Talkies"] },
+          { name: "Hospitality", items: ["Craft Services", "Catering", "Meals"] }
+        ]
+      },
+      {
+        name: "12. Insurance",
+        subcategories: [
+          { name: "Production Insurance", items: ["General Liability", "Equipment Insurance", "Workers Compensation"] },
+          { name: "Other Insurance", items: ["Errors & Omissions", "Completion Bond"] }
+        ]
+      },
+      {
+        name: "13. Post Production",
+        subcategories: [
+          { name: "Editorial", items: ["Editor", "Assistant Editor", "Editing Equipment", "Editing Suite Rental"] },
+          { name: "Music", items: ["Composer", "Music Supervisor", "Music Rights", "Recording Sessions"] },
+          { name: "Sound Post Production", items: ["Sound Designer", "Re-recording Mixer", "ADR", "Foley"] },
+          { name: "Visual Effects", items: ["VFX Supervisor", "VFX Producer", "CG Artists", "Compositors"] },
+          { name: "Color Correction", items: ["Colorist", "Color Suite Rental"] },
+          { name: "Deliverables", items: ["Master Creation", "Deliverable Formats", "Archive Materials"] }
+        ]
+      },
+      {
+        name: "14. Publicity",
+        subcategories: [
+          { name: "Unit Publicist", items: ["Unit Publicist Fee", "Press Kits"] },
+          { name: "Photography", items: ["Still Photographer", "EPK Crew"] },
+          { name: "Promotional Materials", items: ["Posters", "Trailers", "Social Media Content"] }
+        ]
+      }
+    ];
+
+    let nextLineItemNumber = 1;
+
+    function generateLineItemNumber() {
+      return (nextLineItemNumber++).toString().padStart(3, '0');
+    }
+
+    function createBudgetItem(item, subcategory, category) {
+      const lineItemNumber = generateLineItemNumber();
+      return `
+        <div class="budget-item">
+          <div class="budget-item-flex">
+            <span class="line-item-number">${lineItemNumber}</span>
+            <input type="text" value="${item}" oninput="updateExport()" class="item-name">
+            <input type="number" placeholder="Quantity" oninput="updateExport()" class="item-quantity">
+            <input type="number" placeholder="Rate" oninput="updateExport()" class="item-rate">
+            <input type="number" placeholder="Total" oninput="updateExport()" class="item-total" readonly>
+          </div>
+          <div class="budget-item-buttons">
+            <button class="toggle-notes-button" onclick="toggleNotes(this)">Notes</button>
+            <button class="remove-item-button" onclick="removeItem(this)">Remove</button>
+          </div>
+          <textarea class="budget-item-notes" placeholder="Add notes here..." oninput="updateExport()" style="display: none;"></textarea>
+        </div>
+      `;
+    }
+
+    function createSubcategory(subcategory, category) {
+      return `
+        <div class="budget-subcategory">
+          <h3>${subcategory.name}</h3>
+          ${subcategory.items.map(item => createBudgetItem(item, subcategory.name, category)).join('')}
+          <button class="add-item-button" onclick="addItem(this, '${subcategory.name}', '${category}')">Add Item</button>
+        </div>
+      `;
+    }
+
+    function createCategory(category) {
+      return `
+        <div class="budget-category">
+          <h2 onclick="toggleCategory(this)">${category.name}</h2>
+          <div class="budget-items-container">
+            ${category.subcategories.map(subcategory => createSubcategory(subcategory, category.name)).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function initializeBudget() {
+      const budgetCategoriesContainer = document.getElementById('budget-categories');
+      budgetCategoriesContainer.innerHTML = budgetCategories.map(createCategory).join('');
+      updateExport();
+      attachEventListeners();
+    }
+
+    function attachEventListeners() {
+      document.querySelectorAll('.item-quantity, .item-rate').forEach(input => {
+        input.addEventListener('input', updateItemTotal);
+      });
+    }
+
+    function updateItemTotal(event) {
+      const item = event.target.closest('.budget-item');
+      const quantity = parseFloat(item.querySelector('.item-quantity').value) || 0;
+      const rate = parseFloat(item.querySelector('.item-rate').value) || 0;
+      const total = quantity * rate;
+      item.querySelector('.item-total').value = total.toFixed(2);
+      updateExport();
+    }
+
+    function toggleCategory(element) {
+      const itemsContainer = element.nextElementSibling;
+      element.classList.toggle('open');
+      itemsContainer.classList.toggle('open');
+    }
+
+    function toggleAllCategories() {
+      const categories = document.querySelectorAll('.budget-category h2');
+      const isAnyOpen = Array.from(categories).some(category => category.classList.contains('open'));
+      
+      categories.forEach(category => {
+        const itemsContainer = category.nextElementSibling;
+        if (isAnyOpen) {
+          category.classList.remove('open');
+          itemsContainer.classList.remove('open');
+        } else {
+          category.classList.add('open');
+          itemsContainer.classList.add('open');
+        }
+      });
+    }
+
+    function addItem(button, subcategory, category) {
+      const newItem = createBudgetItem('New Item', subcategory, category);
+      button.insertAdjacentHTML('beforebegin', newItem);
+      updateExport();
+      attachEventListeners();
+    }
+
+    function removeItem(button) {
+      button.closest('.budget-item').remove();
+      updateExport();
+    }
+
+    function toggleNotes(button) {
+      const notes = button.closest('.budget-item').querySelector('.budget-item-notes');
+      notes.style.display = notes.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function calculateTotal() {
+      const totalInputs = document.querySelectorAll('.item-total');
+      const total = Array.from(totalInputs).reduce((sum, input) => sum + (parseFloat(input.value) || 0), 0);
+      document.getElementById('total-budget').textContent = `$${total.toFixed(2)}`;
+      updateExport();
+      updateBudgetSummary();
+    }
+
+    function updateBudgetSummary() {
+      const categorySummaries = {};
+      const categories = document.querySelectorAll('.budget-category');
+      
+      categories.forEach(category => {
+        const categoryName = category.querySelector('h2').textContent;
+        const totalInputs = category.querySelectorAll('.item-total');
+        const categoryTotal = Array.from(totalInputs).reduce((sum, input) => sum + (parseFloat(input.value) || 0), 0);
+        categorySummaries[categoryName] = categoryTotal;
+      });
+
+      const summaryContainer = document.getElementById('category-summaries');
+      summaryContainer.innerHTML = '';
+
+      for (const [category, total] of Object.entries(categorySummaries)) {
+        const summaryItem = document.createElement('div');
+        summaryItem.className = 'budget-summary-item';
+        summaryItem.innerHTML = `<span>${category}</span><span>$${total.toFixed(2)}</span>`;
+        summaryContainer.appendChild(summaryItem);
+      }
+    }
+
+    function updateExport() {
+      const projectName = document.getElementById('project-name').value;
+      const productionCompany = document.getElementById('production-company').value;
+      const projectDate = document.getElementById('project-date').value;
+      const currency = document.getElementById('currency').value;
+
+      let exportContent = `Project: ${projectName}\n`;
+      exportContent += `Production Company: ${productionCompany}\n`;
+      exportContent += `Date: ${projectDate}\n`;
+      exportContent += `Currency: ${currency}\n\n`;
+
+      const categories = document.querySelectorAll('.budget-category');
+      categories.forEach(category => {
+        const categoryName = category.querySelector('h2').textContent;
+        exportContent += `${categoryName}\n`;
+
+        const subcategories = category.querySelectorAll('.budget-subcategory');
+        subcategories.forEach(subcategory => {
+          const subcategoryName = subcategory.querySelector('h3').textContent;
+          exportContent += `  ${subcategoryName}\n`;
+
+          const items = subcategory.querySelectorAll('.budget-item');
+          items.forEach(item => {
+            const lineItemNumber = item.querySelector('.line-item-number').textContent;
+            const itemName = item.querySelector('.item-name').value;
+            const quantity = item.querySelector('.item-quantity').value;
+            const rate = item.querySelector('.item-rate').value;
+            const total = item.querySelector('.item-total').value;
+            const notes = item.querySelector('.budget-item-notes').value;
+
+            exportContent += `    ${lineItemNumber} ${itemName}\n`;
+            exportContent += `      Quantity: ${quantity}, Rate: ${rate}, Total: ${total}\n`;
+            if (notes) {
+              exportContent += `      Notes: ${notes}\n`;
+            }
+          });
+        });
+
+        exportContent += '\n';
+      });
+
+      const totalBudget = document.getElementById('total-budget').textContent;
+      exportContent += `Total Budget: ${totalBudget}`;
+
+      document.getElementById('live-export').textContent = exportContent;
+    }
+
+    function exportBudget() {
+      const exportContent = document.getElementById('live-export').textContent;
+      const blob = new Blob([exportContent], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'budget_export.txt';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function exportScreenshot() {
+      const screenshotContent = document.getElementById('budget-categories');
+      html2canvas(screenshotContent).then(canvas => {
+        const img = canvas.toDataURL('image/png');
+        const link = document.createElement('a');
+        link.href = img;
+        link.download = 'budget_screenshot.png';
+        link.click();
+      });
+    }
+
+    function exportToPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      const exportContent = document.getElementById('live-export').textContent;
+      const lines = doc.splitTextToSize(exportContent, 190);
+      doc.text(lines, 10, 10);
+      doc.save('budget_export.pdf');
+    }
+
+    function searchBudget() {
+      const searchTerm = document.getElementById('search-bar').value.toLowerCase();
+      const items = document.querySelectorAll('.budget-item');
+      
+      items.forEach(item => {
+        const itemName = item.querySelector('.item-name').value.toLowerCase();
+        const itemNotes = item.querySelector('.budget-item-notes').value.toLowerCase();
+        const matchFound = itemName.includes(searchTerm) || itemNotes.includes(searchTerm);
+
+        if (matchFound) {
+          item.style.display = 'block';
+          item.classList.add('highlight');
+        } else {
+          item.style.display = 'none';
+          item.classList.remove('highlight');
+        }
+      });
+
+      // Show/hide subcategories and categories based on search results
+      const subcategories = document.querySelectorAll('.budget-subcategory');
+      subcategories.forEach(subcategory => {
+        const visibleItems = subcategory.querySelectorAll('.budget-item[style="display: block;"]');
+        subcategory.style.display = visibleItems.length > 0 ? 'block' : 'none';
+      });
+
+      const categories = document.querySelectorAll('.budget-category');
+      categories.forEach(category => {
+        const visibleSubcategories = category.querySelectorAll('.budget-subcategory[style="display: block;"]');
+        category.style.display = visibleSubcategories.length > 0 ? 'block' : 'none';
+      });
+    }
+
+    document.getElementById('search-bar').addEventListener('input', searchBudget);
+
+    initializeBudget();
+  </script>
+</body>
+</html>
