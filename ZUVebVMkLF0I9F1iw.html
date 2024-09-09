@@ -1,0 +1,838 @@
+<html><head><base href="https://example.com/"><title>Daisy Pictures Location Scouting Scheduler</title>
+<style>
+    :root {
+        --primary-color: #1a1a1a;
+        --secondary-color: #f5f5f5;
+        --accent-color: #ff6b6b;
+        --background-color: #f2f2f7;
+        --text-color: #1c1c1e;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+    }
+    h1 {
+        font-size: 3.5em;
+        text-align: center;
+        margin-bottom: 40px;
+        color: var(--primary-color);
+        letter-spacing: -1px;
+    }
+    .card {
+        background-color: var(--secondary-color);
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        padding: 40px;
+        margin-bottom: 40px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+    .form-grid {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    label {
+        font-weight: 600;
+        display: block;
+        margin-bottom: 8px;
+        color: var(--text-color);
+    }
+    input, textarea, select {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #d1d1d6;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+    }
+    input:focus, textarea:focus, select:focus {
+        outline: none;
+        border-color: var(--accent-color);
+    }
+    button {
+        background-color: var(--accent-color);
+        color: var(--secondary-color);
+        border: none;
+        padding: 15px 30px;
+        font-size: 18px;
+        font-weight: 600;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.1s ease;
+    }
+    button:hover {
+        background-color: #e6352b;
+        transform: translateY(-2px);
+    }
+    .checklist {
+        background-color: #ffffff;
+        border-radius: 12px;
+        padding: 20px;
+        margin-top: 30px;
+    }
+    .checklist-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .checklist-item input[type="checkbox"] {
+        margin-right: 10px;
+        width: auto;
+    }
+    .location-entry {
+        background-color: #f9f9f9;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+    #previewSection {
+        margin-top: 30px;
+    }
+    .preview-location {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .preview-location h3 {
+        margin-top: 0;
+        color: var(--accent-color);
+    }
+    .preview-image {
+        max-width: 100%;
+        margin-top: 10px;
+    }
+    .gallery-view {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        margin-top: 30px;
+    }
+    .gallery-item {
+        background-color: #ffffff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+    .gallery-item:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    .gallery-image {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+    }
+    .gallery-info {
+        padding: 10px;
+    }
+    @media print {
+        body {
+            background-color: #fff;
+        }
+        .container {
+            max-width: 100%;
+        }
+        .card, .checklist, .location-entry {
+            box-shadow: none;
+            border: 1px solid #ddd;
+        }
+        button {
+            display: none;
+        }
+    }
+    .error {
+        border-color: red;
+    }
+    .drag-over {
+        border-color: var(--accent-color);
+    }
+    .warning {
+        border-color: orange;
+    }
+    .simple-schedule {
+        background-color: #f2f2f7;
+        border-radius: 12px;
+        padding: 20px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+    .schedule-item {
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        cursor: move;
+    }
+    .schedule-item.dragging {
+        opacity: 0.5;
+        background-color: #f0f0f0;
+    }
+    .schedule-item-time {
+        font-size: 18px;
+        font-weight: 600;
+        color: #007aff;
+    }
+    .schedule-item-location {
+        font-size: 16px;
+        color: #1c1c1e;
+    }
+    .schedule-item-type {
+        font-size: 14px;
+        color: #8e8e93;
+        text-transform: uppercase;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    .card {
+        animation: fadeIn 0.5s ease-out;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Daisy Pictures Location Scouting Scheduler</h1>
+    <form id="scoutingForm">
+        <div class="card">
+            <h2>Project Details</h2>
+            <div class="form-grid">
+                <div>
+                    <label for="projectTitle">Project Title:</label>
+                    <input type="text" id="projectTitle" name="projectTitle" required>
+                </div>
+                <div>
+                    <label for="director">Director:</label>
+                    <input type="text" id="director" name="director" required>
+                </div>
+                <div>
+                    <label for="producer">Producer:</label>
+                    <input type="text" id="producer" name="producer" required>
+                </div>
+                <div>
+                    <label for="productionDesigner">Production Designer:</label>
+                    <input type="text" id="productionDesigner" name="productionDesigner" required>
+                </div>
+                <div>
+                    <label for="locationManager">Location Manager:</label>
+                    <input type="text" id="locationManager" name="locationManager" required>
+                </div>
+                <div>
+                    <label for="scoutingDates">Scouting Dates:</label>
+                    <input type="text" id="scoutingDates" name="scoutingDates" required>
+                </div>
+                <div>
+                    <label for="cinematographer">Cinematographer:</label>
+                    <input type="text" id="cinematographer" name="cinematographer" required>
+                </div>
+                <div>
+                    <label for="serviceProducer">Service Producer:</label>
+                    <input type="text" id="serviceProducer" name="serviceProducer" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Search and Filter Locations</h2>
+            <input type="text" id="locationSearch" placeholder="Search locations...">
+            <select id="locationFilter">
+                <option value="all">All Types</option>
+                <option value="interior">Interior</option>
+                <option value="exterior">Exterior</option>
+                <option value="both">Both</option>
+            </select>
+        </div>
+
+        <div id="locationEntries"></div>
+        <button type="button" id="addLocation">Add Location</button>
+
+        <div class="card checklist">
+            <h2>Tech Scout Checklist</h2>
+            <div id="checklistItems">
+                <div class="checklist-item">
+                    <input type="checkbox" id="cameraPackage" name="cameraPackage">
+                    <label for="cameraPackage">Camera package (including lenses)</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="lighting" name="lighting">
+                    <label for="lighting">Lighting equipment</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="grip" name="grip">
+                    <label for="grip">Grip equipment</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="sound" name="sound">
+                    <label for="sound">Sound equipment</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="powerDistribution" name="powerDistribution">
+                    <label for="powerDistribution">Power distribution equipment</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="wireless" name="wireless">
+                    <label for="wireless">Wireless communication devices</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="monitors" name="monitors">
+                    <label for="monitors">Monitors and playback equipment</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="specialEquipment" name="specialEquipment">
+                    <label for="specialEquipment">Special equipment (dollies, cranes, etc.)</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="safetyGear" name="safetyGear">
+                    <label for="safetyGear">Safety gear</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="floorPlans" name="floorPlans">
+                    <label for="floorPlans">Floor plans and shot lists</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" id="previewSection">
+            <h2>Live Export Preview</h2>
+            <div id="previewContent"></div>
+        </div>
+
+        <div class="card" id="gallerySection">
+            <h2>Location Gallery</h2>
+            <div id="galleryView" class="gallery-view"></div>
+        </div>
+
+        <div class="card" id="simpleScheduleSection">
+            <h2>Simple Schedule</h2>
+            <div id="simpleSchedule" class="simple-schedule"></div>
+        </div>
+
+        <button type="button" id="exportPDF">Export to PDF</button>
+    </form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+    let locationCount = 0;
+
+    function addLocationEntry() {
+        locationCount++;
+        const locationEntry = document.createElement('div');
+        locationEntry.className = 'card location-entry';
+        locationEntry.innerHTML = `
+            <h2>Location ${locationCount}</h2>
+            <div class="form-grid">
+                <div>
+                    <label for="locationName${locationCount}">Location Name:</label>
+                    <input type="text" id="locationName${locationCount}" name="locationName${locationCount}" required>
+                </div>
+                <div>
+                    <label for="address${locationCount}">Address:</label>
+                    <input type="text" id="address${locationCount}" name="address${locationCount}" required>
+                </div>
+                <div>
+                    <label for="visitDate${locationCount}">Visit Date:</label>
+                    <input type="date" id="visitDate${locationCount}" name="visitDate${locationCount}" required>
+                </div>
+                <div>
+                    <label for="visitTime${locationCount}">Visit Time:</label>
+                    <input type="time" id="visitTime${locationCount}" name="visitTime${locationCount}" required>
+                </div>
+                <div>
+                    <label for="contactPerson${locationCount}">Contact Person:</label>
+                    <input type="text" id="contactPerson${locationCount}" name="contactPerson${locationCount}">
+                </div>
+                <div>
+                    <label for="contactPhone${locationCount}">Contact Phone:</label>
+                    <input type="tel" id="contactPhone${locationCount}" name="contactPhone${locationCount}">
+                </div>
+                <div>
+                    <label for="locationType${locationCount}">Location Type:</label>
+                    <select id="locationType${locationCount}" name="locationType${locationCount}">
+                        <option value="interior">Interior</option>
+                        <option value="exterior">Exterior</option>
+                        <option value="both">Both</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="parkingAvailable${locationCount}">Parking Available:</label>
+                    <select id="parkingAvailable${locationCount}" name="parkingAvailable${locationCount}">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                        <option value="limited">Limited</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="powerAccess${locationCount}">Power Access:</label>
+                    <select id="powerAccess${locationCount}" name="powerAccess${locationCount}">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                        <option value="limited">Limited</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="restrooms${locationCount}">Restrooms:</label>
+                    <select id="restrooms${locationCount}" name="restrooms${locationCount}">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                        <option value="nearby">Nearby</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="locationImage${locationCount}">Location Image:</label>
+                    <input type="file" id="locationImage${locationCount}" name="locationImage${locationCount}" accept="image/*" class="image-upload">
+                    <div id="imagePreview${locationCount}" class="image-preview"></div>
+                </div>
+            </div>
+            <div>
+                <label for="notes${locationCount}">Notes:</label>
+                <textarea id="notes${locationCount}" name="notes${locationCount}" rows="4"></textarea>
+            </div>
+        `;
+        document.getElementById('locationEntries').appendChild(locationEntry);
+        
+        document.getElementById(`locationImage${locationCount}`).addEventListener('change', handleImageUpload);
+
+        setupDragAndDrop();
+
+        updatePreview();
+
+        updateSimpleSchedule();
+
+        if (locationCount >= 20) {
+            document.getElementById('addLocation').style.display = 'none';
+        }
+    }
+
+    function setupDragAndDrop() {
+        const dropZones = document.querySelectorAll('.image-upload');
+        dropZones.forEach(zone => {
+            zone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                zone.classList.add('drag-over');
+            });
+            zone.addEventListener('dragleave', () => {
+                zone.classList.remove('drag-over');
+            });
+            zone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                zone.classList.remove('drag-over');
+                const file = e.dataTransfer.files[0];
+                const input = zone.querySelector('input[type="file"]');
+                input.files = e.dataTransfer.files;
+                handleImageUpload({ target: input });
+            });
+        });
+    }
+
+    function handleImageUpload(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        const previewId = event.target.id.replace('locationImage', 'imagePreview');
+        
+        reader.onload = function(e) {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.className = 'uploaded-image';
+            document.getElementById(previewId).innerHTML = '';
+            document.getElementById(previewId).appendChild(img);
+            updateGalleryView();
+        }
+        
+        reader.readAsDataURL(file);
+    }
+    
+    function validateForm() {
+        const requiredFields = ['projectTitle', 'director', 'producer', 'productionDesigner', 'locationManager', 'scoutingDates', 'cinematographer', 'serviceProducer'];
+        let isValid = true;
+
+        requiredFields.forEach(field => {
+            const element = document.getElementById(field);
+            if (!element.value.trim()) {
+                element.classList.add('warning');
+                isValid = false;
+            } else {
+                element.classList.remove('warning');
+            }
+        });
+
+        if (!isValid) {
+            alert('Please fill in all required project details before exporting.');
+        }
+
+        return isValid;
+    }
+
+    function autoSave() {
+        const formData = new FormData(document.getElementById('scoutingForm'));
+        localStorage.setItem('scoutingFormData', JSON.stringify(Object.fromEntries(formData)));
+    }
+
+    function loadSavedData() {
+        const savedData = JSON.parse(localStorage.getItem('scoutingFormData'));
+        if (savedData) {
+            Object.keys(savedData).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.value = savedData[key];
+                }
+            });
+        }
+    }
+
+    function searchAndFilterLocations() {
+        const searchTerm = document.getElementById('locationSearch').value.toLowerCase();
+        const filterType = document.getElementById('locationFilter').value;
+        const locationEntries = document.querySelectorAll('.location-entry');
+
+        locationEntries.forEach(entry => {
+            const locationName = entry.querySelector('[id^="locationName"]').value.toLowerCase();
+            const locationType = entry.querySelector('[id^="locationType"]').value;
+            const shouldShow = (locationName.includes(searchTerm) || searchTerm === '') &&
+                               (filterType === 'all' || locationType === filterType);
+            entry.style.display = shouldShow ? 'block' : 'none';
+        });
+    }
+
+    function updatePreview() {
+        const previewContent = document.getElementById('previewContent');
+        let previewHTML = '';
+
+        previewHTML += `
+            <div class="preview-project-details">
+                <h2>Project Details</h2>
+                <p><strong>Project Title:</strong> ${document.getElementById('projectTitle').value || 'N/A'}</p>
+                <p><strong>Director:</strong> ${document.getElementById('director').value || 'N/A'}</p>
+                <p><strong>Producer:</strong> ${document.getElementById('producer').value || 'N/A'}</p>
+                <p><strong>Production Designer:</strong> ${document.getElementById('productionDesigner').value || 'N/A'}</p>
+                <p><strong>Location Manager:</strong> ${document.getElementById('locationManager').value || 'N/A'}</p>
+                <p><strong>Scouting Dates:</strong> ${document.getElementById('scoutingDates').value || 'N/A'}</p>
+                <p><strong>Cinematographer:</strong> ${document.getElementById('cinematographer').value || 'N/A'}</p>
+                <p><strong>Service Producer:</strong> ${document.getElementById('serviceProducer').value || 'N/A'}</p>
+            </div>
+        `;
+        
+        const scheduleItems = document.querySelectorAll('.schedule-item');
+        scheduleItems.forEach((item) => {
+            const id = item.dataset.id;
+            const locationName = document.getElementById(`locationName${id}`).value || `Location ${id}`;
+            const address = document.getElementById(`address${id}`).value || 'N/A';
+            const visitDate = document.getElementById(`visitDate${id}`).value || 'N/A';
+            const visitTime = document.getElementById(`visitTime${id}`).value || 'N/A';
+            const contactPerson = document.getElementById(`contactPerson${id}`).value || 'N/A';
+            const contactPhone = document.getElementById(`contactPhone${id}`).value || 'N/A';
+            const locationType = document.getElementById(`locationType${id}`).value || 'N/A';
+            const parkingAvailable = document.getElementById(`parkingAvailable${id}`).value || 'N/A';
+            const powerAccess = document.getElementById(`powerAccess${id}`).value || 'N/A';
+            const restrooms = document.getElementById(`restrooms${id}`).value || 'N/A';
+            const notes = document.getElementById(`notes${id}`).value || 'N/A';
+            const imagePreview = document.getElementById(`imagePreview${id}`).innerHTML;
+            
+            previewHTML += `
+                <div class="preview-location">
+                    <h3>${locationName}</h3>
+                    <p><strong>Address:</strong> ${address}</p>
+                    <p><strong>Visit Date:</strong> ${visitDate}</p>
+                    <p><strong>Visit Time:</strong> ${visitTime}</p>
+                    <p><strong>Contact:</strong> ${contactPerson} (${contactPhone})</p>
+                    <p><strong>Type:</strong> ${locationType}</p>
+                    <p><strong>Parking:</strong> ${parkingAvailable}</p>
+                    <p><strong>Power Access:</strong> ${powerAccess}</p>
+                    <p><strong>Restrooms:</strong> ${restrooms}</p>
+                    <p><strong>Notes:</strong> ${notes}</p>
+                    <div class="preview-image">${imagePreview}</div>
+                </div>
+            `;
+        });
+        
+        previewContent.innerHTML = previewHTML;
+        updateGalleryView();
+    }
+
+    function updateGalleryView() {
+        const galleryView = document.getElementById('galleryView');
+        let galleryHTML = '';
+        
+        for (let i = 1; i <= locationCount; i++) {
+            const locationName = document.getElementById(`locationName${i}`).value || `Location ${i}`;
+            const imagePreview = document.getElementById(`imagePreview${i}`).innerHTML;
+            
+            if (imagePreview) {
+                galleryHTML += `
+                    <div class="gallery-item">
+                        <div class="gallery-image">${imagePreview}</div>
+                        <div class="gallery-info">
+                            <h4>${locationName}</h4>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+        
+        galleryView.innerHTML = galleryHTML;
+    }
+
+    function updateSimpleSchedule() {
+        const scheduleContainer = document.getElementById('simpleSchedule');
+        scheduleContainer.innerHTML = '';
+
+        const scheduleItems = [];
+
+        for (let i = 1; i <= locationCount; i++) {
+            const locationName = document.getElementById(`locationName${i}`).value || `Location ${i}`;
+            const visitDate = document.getElementById(`visitDate${i}`).value;
+            const visitTime = document.getElementById(`visitTime${i}`).value;
+            const locationType = document.getElementById(`locationType${i}`).value || 'N/A';
+
+            if (visitDate && visitTime) {
+                scheduleItems.push({
+                    id: i,
+                    locationName,
+                    visitDate,
+                    visitTime,
+                    locationType
+                });
+            }
+        }
+
+        scheduleItems.sort((a, b) => {
+            const dateTimeA = new Date(`${a.visitDate}T${a.visitTime}`);
+            const dateTimeB = new Date(`${b.visitDate}T${b.visitTime}`);
+            return dateTimeA - dateTimeB;
+        });
+
+        scheduleItems.forEach(item => {
+            const scheduleItem = document.createElement('div');
+            scheduleItem.className = 'schedule-item';
+            scheduleItem.draggable = true;
+            scheduleItem.dataset.id = item.id;
+            scheduleItem.innerHTML = `
+                <div>
+                    <div class="schedule-item-location">${item.locationName}</div>
+                    <div class="schedule-item-type">${item.locationType}</div>
+                </div>
+                <div class="schedule-item-time">${item.visitDate} ${item.visitTime}</div>
+            `;
+            scheduleContainer.appendChild(scheduleItem);
+        });
+
+        setupDragAndDropSchedule();
+    }
+
+    function setupDragAndDropSchedule() {
+        const scheduleContainer = document.getElementById('simpleSchedule');
+        let draggedItem = null;
+
+        scheduleContainer.addEventListener('dragstart', (e) => {
+            draggedItem = e.target;
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/plain', '');
+            setTimeout(() => draggedItem.classList.add('dragging'), 0);
+        });
+
+        scheduleContainer.addEventListener('dragend', () => {
+            draggedItem.classList.remove('dragging');
+            draggedItem = null;
+        });
+
+        scheduleContainer.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            const afterElement = getDragAfterElement(scheduleContainer, e.clientY);
+            const currentElement = draggedItem;
+            if (afterElement == null) {
+                scheduleContainer.appendChild(draggedItem);
+            } else {
+                scheduleContainer.insertBefore(draggedItem, afterElement);
+            }
+        });
+
+        scheduleContainer.addEventListener('dragend', updateScheduleOrder);
+    }
+
+    function getDragAfterElement(container, y) {
+        const draggableElements = [...container.querySelectorAll('.schedule-item:not(.dragging)')];
+
+        return draggableElements.reduce((closest, child) => {
+            const box = child.getBoundingClientRect();
+            const offset = y - box.top - box.height / 2;
+            if (offset < 0 && offset > closest.offset) {
+                return { offset: offset, element: child };
+            } else {
+                return closest;
+            }
+        }, { offset: Number.NEGATIVE_INFINITY }).element;
+    }
+
+    function updateScheduleOrder() {
+        const scheduleItems = document.querySelectorAll('.schedule-item');
+        scheduleItems.forEach((item, index) => {
+            const id = item.dataset.id;
+            const visitDateInput = document.getElementById(`visitDate${id}`);
+            const visitTimeInput = document.getElementById(`visitTime${id}`);
+            if (visitDateInput && visitTimeInput) {
+                const newDate = new Date(visitDateInput.value + 'T' + visitTimeInput.value);
+                newDate.setMinutes(newDate.getMinutes() + index * 30);
+                visitDateInput.value = newDate.toISOString().split('T')[0];
+                visitTimeInput.value = newDate.toTimeString().slice(0, 5);
+            }
+        });
+        updatePreview();
+    }
+
+    document.getElementById('locationEntries').addEventListener('input', updatePreview);
+    document.getElementById('locationSearch').addEventListener('input', searchAndFilterLocations);
+    document.getElementById('locationFilter').addEventListener('change', searchAndFilterLocations);
+    document.getElementById('addLocation').addEventListener('click', addLocationEntry);
+
+    document.getElementById('exportPDF').addEventListener('click', () => {
+        if (!validateForm()) return;
+
+        try {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF('p', 'mm', 'a4');
+
+            const primaryColor = '#1a1a1a';
+            const secondaryColor = '#f5f5f5';
+            const accentColor = '#ff6b6b';
+
+            doc.setFillColor(primaryColor);
+            doc.rect(0, 0, doc.internal.pageSize.width, 40, 'F');
+            doc.setTextColor(secondaryColor);
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(24);
+            doc.text('LOCATION SCOUTING', 15, 20);
+            doc.setFontSize(24);
+            doc.text('SCHEDULE', 15, 35);
+
+            doc.setFillColor(accentColor);
+            doc.circle(185, 20, 15, 'F');
+
+            doc.setTextColor(primaryColor);
+            doc.setFontSize(18);
+            doc.setFont('helvetica', 'bold');
+            doc.text('PROJECT DETAILS', 15, 55);
+            
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            const details = [
+                `Project Title: ${document.getElementById('projectTitle').value || 'N/A'}`,
+                `Director: ${document.getElementById('director').value || 'N/A'}`,
+                `Producer: ${document.getElementById('producer').value || 'N/A'}`,
+                `Production Designer: ${document.getElementById('productionDesigner').value || 'N/A'}`,
+                `Location Manager: ${document.getElementById('locationManager').value || 'N/A'}`,
+                `Scouting Dates: ${document.getElementById('scoutingDates').value || 'N/A'}`,
+                `Cinematographer: ${document.getElementById('cinematographer').value || 'N/A'}`,
+                `Service Producer: ${document.getElementById('serviceProducer').value || 'N/A'}`
+            ];
+
+            details.forEach((detail, index) => {
+                doc.text(detail, 15, 65 + (index * 7));
+            });
+
+            let yOffset = 130;
+
+            function addWrappedText(text, x, y, maxWidth, lineHeight) {
+                const lines = doc.splitTextToSize(text, maxWidth);
+                for (let i = 0; i < lines.length; i++) {
+                    doc.text(lines[i], x, y + (i * lineHeight));
+                }
+                return lines.length * lineHeight;
+            }
+
+            const locationEntries = document.querySelectorAll('.preview-location');
+            locationEntries.forEach((entry, index) => {
+                if (yOffset > 250) {
+                    doc.addPage();
+                    yOffset = 20;
+
+                    doc.setFillColor(primaryColor);
+                    doc.rect(0, 0, doc.internal.pageSize.width, 25, 'F');
+                    doc.setTextColor(secondaryColor);
+                    doc.setFontSize(14);
+                    doc.setFont('helvetica', 'bold');
+                    doc.text('LOCATION SCOUTING SCHEDULE', 15, 17);
+                    doc.setTextColor(primaryColor);
+                }
+
+                const locationName = entry.querySelector('h3').textContent;
+                doc.setFontSize(16);
+                doc.setFont('helvetica', 'bold');
+                doc.setTextColor(accentColor);
+                doc.text(locationName, 15, yOffset);
+                yOffset += 8;
+
+                doc.setFontSize(9);
+                doc.setFont('helvetica', 'normal');
+                doc.setTextColor(primaryColor);
+                const paragraphs = entry.querySelectorAll('p');
+                paragraphs.forEach(p => {
+                    yOffset += addWrappedText(p.textContent, 15, yOffset, 180, 4.5);
+                    yOffset += 1.5;
+                });
+
+                const imageElement = entry.querySelector('.preview-image img');
+                if (imageElement) {
+                    try {
+                        doc.addImage(imageElement.src, 'JPEG', 15, yOffset, 75, 56);
+                        doc.setDrawColor(accentColor);
+                        doc.setLineWidth(0.5);
+                        doc.rect(14, yOffset - 1, 77, 58);
+                        yOffset += 60;
+                    } catch (error) {
+                        console.error('Error adding image to PDF:', error);
+                    }
+                }
+
+                doc.setDrawColor(accentColor);
+                doc.setLineWidth(0.25);
+                doc.line(15, yOffset, 195, yOffset);
+
+                yOffset += 15;
+            });
+
+            doc.save('daisy_pictures_location_scouting_schedule_2024.pdf');
+        } catch (error) {
+            console.error('Error generating PDF:', error);
+            alert('An error occurred while generating the PDF. Please try again.');
+        }
+    });
+
+    loadSavedData();
+    document.getElementById('scoutingForm').addEventListener('input', debounce(autoSave, 500));
+
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+    
+    addLocationEntry();
+</script>
+</body>
+</html>
